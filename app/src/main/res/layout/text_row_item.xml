@@ -41,7 +41,20 @@
             android:text="Message content"
             android:textColor="#000000"
             android:textSize="14sp"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            android:maxLines="3"
+            android:ellipsize="end" />
+
+        <!-- Comments Section (Nested Comments) -->
+        <LinearLayout
+            android:id="@+id/comments_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="8dp">
+
+            <!-- Nested Comment Views will be dynamically added here -->
+        </LinearLayout>
 
     </LinearLayout>
 

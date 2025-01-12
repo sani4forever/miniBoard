@@ -1,4 +1,4 @@
-package com.example.miniboard
+package com.example.miniboard.retrofit
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

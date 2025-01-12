@@ -1,4 +1,4 @@
-package com.example.miniboard
+package com.example.miniboard.retrofit
 
 class Texts : ArrayList<TextItem>() {
 }

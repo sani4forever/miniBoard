@@ -1,4 +1,4 @@
-package com.example.miniboard
+package com.example.miniboard.activities
 
 import android.os.Bundle
 import android.util.Log
@@ -7,7 +7,10 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.miniboard.recyclerview.TextItemAdapter
 import com.example.miniboard.databinding.ActivityMainBinding
+import com.example.miniboard.retrofit.RetrofitInstance
+import com.example.miniboard.retrofit.TextService
 import com.example.miniboard.viewmodels.MainViewModel
 import com.example.miniboard.viewmodelsfactories.MainViewModelFactory
 
@@ -25,8 +28,8 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        // private val messages: List<TextItem>
-        val adapter = TextItemAdapter()
+
+        val adapter = TextItemAdapter(this)
         binding.textRecyclerView.adapter = adapter
 
         viewModel.responseLiveData.observe(this) { response ->

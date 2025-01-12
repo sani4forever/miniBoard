@@ -1,4 +1,4 @@
-package com.example.miniboard
+package com.example.miniboard.retrofit
 
 import retrofit2.Response
 import retrofit2.http.GET
