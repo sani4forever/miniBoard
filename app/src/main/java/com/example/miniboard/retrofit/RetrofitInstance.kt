@@ -5,10 +5,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitInstance {
 
-    companion object{
-        private val mainURL = "https://pashok11.tw1.su/apis/wall_of_text/"
+    companion object {
+        private const val mainURL = "https://pashok11.tw1.su/apis/wall_of_text/"
 
-        fun getRetrofitInstance() : Retrofit {
+        fun getRetrofitInstance(): Retrofit {
             return Retrofit.Builder()
                 .baseUrl(mainURL)
                 .addConverterFactory(GsonConverterFactory.create())

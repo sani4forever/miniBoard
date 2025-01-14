@@ -22,10 +22,21 @@
         <argument
             android:name="threadId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_commentsFragment_to_bottomSheetDialogFragment2"
+            app:destination="@id/bottomSheetDialogFragment2" />
     </fragment>
     <activity
         android:id="@+id/mainActivity"
         android:name="com.example.miniboard.activities.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
+    <dialog
+        android:id="@+id/bottomSheetDialogFragment2"
+        android:name="com.example.miniboard.fragments.BottomSheetDialogFragment"
+        android:label="BottomSheetDialogFragment" >
+        <argument
+            android:name="messageId"
+            app:argType="integer" />
+    </dialog>
 </navigation>
