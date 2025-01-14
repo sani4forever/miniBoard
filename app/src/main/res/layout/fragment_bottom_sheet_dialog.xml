@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Поле для имени пользователя -->
+    <EditText
+        android:id="@+id/usernameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ваше имя (по умолчанию Anonymous)" />
+
+    <!-- Поле для текста треда -->
+    <EditText
+        android:id="@+id/threadTextEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Введите текст треда" />
+
+    <!-- Кнопка для создания треда -->
+    <Button
+        android:id="@+id/createThreadButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Создать тред" />
+
+    <!-- Кнопка для отмены -->
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Отмена"
+        android:layout_marginTop="8dp" />
+</LinearLayout>

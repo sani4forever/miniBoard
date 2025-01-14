@@ -14,7 +14,8 @@ import java.util.Locale
 
 class TextItemAdapter(
     private val context: Context,
-    private val clickListener: (Long) -> Unit
+    private val clickListener: (Long) -> Unit,
+    private val longClickListener: (Long) -> Unit
 ) : RecyclerView.Adapter<TextItemAdapter.ViewHolder>() {
 
     private val messages: MutableList<TextItem> = mutableListOf()
@@ -24,7 +25,11 @@ class TextItemAdapter(
         private val createdAtTextView: TextView = itemView.findViewById(R.id.created_at)
         private val messageTextView: TextView = itemView.findViewById(R.id.message_text)
 
-        fun bind(message: TextItem, clickListener: (Long) -> Unit) {
+        fun bind(
+            message: TextItem,
+            clickListener: (Long) -> Unit,
+            longClickListener: (Long) -> Unit
+        ) {
             usernameTextView.text = message.username
             createdAtTextView.text = SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault())
                 .format(Date(message.createdAt.toLong() * 1000))
@@ -36,6 +41,12 @@ class TextItemAdapter(
                 }
             } else {
                 itemView.setOnClickListener(null)
+            }
+
+            itemView.setOnLongClickListener {
+                longClickListener.invoke(message.id.toLong())
+                true
+
             }
         }
     }
@@ -50,7 +61,7 @@ class TextItemAdapter(
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val message = messages[position]
-        viewHolder.bind(message, clickListener)
+        viewHolder.bind(message, clickListener, longClickListener)
 
         val marginStart = message.commentDepth * 20
         val params = viewHolder.itemView.layoutParams as ViewGroup.MarginLayoutParams

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.miniboard.databinding.FragmentCommentsBinding
 import com.example.miniboard.recyclerview.TextItemAdapter
 import com.example.miniboard.retrofit.RetrofitInstance
@@ -26,8 +27,18 @@ class CommentsFragment : Fragment() {
         val retrofitService = RetrofitInstance.getRetrofitInstance().create(TextService::class.java)
         val viewModel: CommentsViewModel by viewModels { CommentsViewModelFactory(retrofitService) }
 
-        val adapter = TextItemAdapter(requireContext()) { id ->
-        }
+        val adapter = TextItemAdapter(
+            requireContext(),
+            clickListener = { _ ->
+            },
+            longClickListener = { messageId ->
+                val action =
+                    CommentsFragmentDirections.actionCommentsFragmentToBottomSheetDialogFragment2(
+                        messageId.toInt()
+                    )
+                findNavController().navigate(action)
+            }
+        )
         binding.commentsRecyclerView.adapter = adapter
 
         val threadId = arguments?.let {

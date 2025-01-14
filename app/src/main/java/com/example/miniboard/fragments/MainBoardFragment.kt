@@ -21,28 +21,33 @@ class MainBoardFragment : Fragment() {
     private val binding get() = _binding!!
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMainBoardBinding.inflate(inflater, container, false)
         val retrofitService = RetrofitInstance.getRetrofitInstance().create(TextService::class.java)
         val viewModel: MainViewModel by viewModels { MainViewModelFactory(retrofitService) }
 
-        val adapter = this.context?.let {
-            TextItemAdapter(it) { messageId ->
-                val action = MainBoardFragmentDirections.actionMainBoardFragmentToCommentsFragment(
-                    messageId.toInt()
-                )
-                findNavController().navigate(action)
-            }
+        val adapter = this.context?.let { context ->
+            TextItemAdapter(
+                context,
+                clickListener = { messageId ->
+                    val action =
+                        MainBoardFragmentDirections.actionMainBoardFragmentToCommentsFragment(
+                            messageId.toInt()
+                        )
+                    findNavController().navigate(action)
+                },
+                longClickListener = { _ -> }
+            )
         }
         binding.textRecyclerView.adapter = adapter
 
+        binding.addButton.setOnClickListener {
+            val addThreadBottomSheet = BottomSheetDialogFragment()
+            addThreadBottomSheet.show(parentFragmentManager, "AddThreadBottomSheetDialogFragment")
+        }
 
         viewModel.responseLiveData.observe(viewLifecycleOwner) { response ->
             if (response.isSuccessful) {
@@ -56,11 +61,5 @@ class MainBoardFragment : Fragment() {
 
         // Inflate the layout for this fragment
         return binding.root
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance() =
-            MainBoardFragment().apply {}
     }
 }

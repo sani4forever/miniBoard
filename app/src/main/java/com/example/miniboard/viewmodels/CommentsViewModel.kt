@@ -18,7 +18,6 @@ class CommentsViewModel(private val textService: TextService) : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = textService.getTextsById(threadId)
-                Log.d("aboba", "${response.body()}")
                 if (response.isSuccessful) {
                     response.body()?.let { thread ->
                         val flatComments = flattenComments(thread)
