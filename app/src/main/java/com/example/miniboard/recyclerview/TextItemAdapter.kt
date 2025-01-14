@@ -49,7 +49,15 @@ class TextItemAdapter(
     override fun getItemCount(): Int = messages.size
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.bind(messages[position], clickListener)
+        val message = messages[position]
+        viewHolder.bind(message, clickListener)
+
+        val marginStart = message.commentDepth * 20
+        val params = viewHolder.itemView.layoutParams as ViewGroup.MarginLayoutParams
+        params.marginStart = marginStart
+        viewHolder.itemView.layoutParams = params
+
+
     }
 
     fun submitList(newMessages: List<TextItem>) {

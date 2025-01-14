@@ -15,11 +15,7 @@ import com.example.miniboard.retrofit.TextService
 import com.example.miniboard.viewmodels.MainViewModel
 import com.example.miniboard.viewmodelsfactories.MainViewModelFactory
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MainBoardFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class MainBoardFragment : Fragment() {
     private var _binding: FragmentMainBoardBinding? = null
     private val binding get() = _binding!!
